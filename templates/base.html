@@ -400,13 +400,25 @@
             padding-right: 14px;
         }
 
-        /* Mobile: smaller icons, no label expand */
+        /* Mobile: move to bottom-left corner, circular like WhatsApp */
         @media (max-width: 767px) {
+            .floating-contact-sidebar {
+                left: 20px;
+                bottom: 28px;
+                top: auto;
+                transform: none;
+                flex-direction: column-reverse;
+                gap: 10px;
+            }
+            .floating-contact-item {
+                flex-direction: row;
+            }
             .floating-icon-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-                border-radius: 0 8px 8px 0;
+                width: 54px;
+                height: 54px;
+                font-size: 22px;
+                border-radius: 50%;
+                box-shadow: 0 4px 16px rgba(83, 36, 24, 0.45);
             }
             .floating-contact-label {
                 display: none;
