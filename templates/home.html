@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% block title %}Home | CHAVAN PATIL & ASSOCIATE Civil Engineering{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO SECTION ===== -->
+<section class="relative min-h-screen flex items-center overflow-hidden bg-brand-cream">
+    <!-- Background decorative shapes -->
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-neutral/60 clip-hero -z-0"></div>
+    <div class="absolute top-20 right-10 w-80 h-80 rounded-full bg-brand-orange/10 blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-64 h-64 rounded-full bg-brand-brown/5 blur-2xl"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Hero Text -->
+        <div>
+            <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-brand-orange bg-brand-orange/10 rounded-full mb-6">
+                Trusted Since 2017
+            </span>
+            <h1 class="text-5xl lg:text-6xl font-heading text-brand-brown leading-tight mb-6">
+                Building <span class="text-brand-orange">Strong</span><br>
+                Foundations for<br>
+                Tomorrow
+            </h1>
+            <p class="text-brand-brown-light text-lg leading-relaxed mb-8 max-w-lg">
+                We deliver world-class civil engineering and construction solutions — from structural design to project management — with precision, integrity, and innovation.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="{% url 'projects' %}" class="px-8 py-3 bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange-hover transition-all shadow-lg hover:shadow-xl">
+                    View Projects <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="{% url 'contact' %}" class="px-8 py-3 border-2 border-brand-brown text-brand-brown font-semibold rounded-full hover:bg-brand-brown hover:text-white transition-all">
+                    Get In Touch
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="flex gap-8 mt-12 pt-8 border-t border-black/10">
+                <div>
+                    <p class="text-3xl font-heading text-brand-brown">500+</p>
+                    <p class="text-sm text-brand-brown-light mt-1">Projects Done</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-heading text-brand-brown">9+</p>
+                    <p class="text-sm text-brand-brown-light mt-1">Years Experience</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-heading text-brand-brown">10+</p>
+                    <p class="text-sm text-brand-brown-light mt-1">Expert Engineers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Image Card -->
+        <div class="relative">
+            <div class="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-brand-neutral flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
+                     alt="Civil Engineering Construction"
+                     class="w-full h-full object-cover">
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl px-6 py-4 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-brand-orange/10 flex items-center justify-center">
+                    <i class="fa-solid fa-award text-brand-orange text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-brand-brown font-heading text-sm">Award Winning</p>
+                    <p class="text-brand-brown-light text-xs">10+ National Awards</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SERVICES OVERVIEW ===== -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+            <span class="text-xs font-semibold tracking-widest uppercase text-brand-orange">What We Do</span>
+            <h2 class="text-4xl font-heading text-brand-brown mt-2">Our Core Services</h2>
+            <div class="section-divider mx-auto mt-3"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for service in services %}
+            <div class="card-hover bg-brand-cream rounded-2xl p-8 border border-black/5">
+                <div class="w-14 h-14 rounded-xl bg-brand-orange/10 flex items-center justify-center mb-5">
+                    <i class="{{ service.icon }} text-brand-orange text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-heading text-brand-brown mb-3">{{ service.title }}</h3>
+                <p class="text-sm text-brand-brown-light leading-relaxed">{{ service.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-10">
+            <a href="{% url 'services' %}" class="inline-block px-8 py-3 border-2 border-brand-orange text-brand-orange font-semibold rounded-full hover:bg-brand-orange hover:text-white transition-all">
+                All Services <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FEATURED PROJECTS ===== -->
+<section class="py-20 bg-brand-neutral">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div>
+                <span class="text-xs font-semibold tracking-widest uppercase text-brand-orange">Portfolio</span>
+                <h2 class="text-4xl font-heading text-brand-brown mt-2">Featured Projects</h2>
+                <div class="section-divider mt-3"></div>
+            </div>
+            <a href="{% url 'projects' %}" class="mt-4 md:mt-0 text-sm font-semibold text-brand-orange hover:underline">
+                View All Projects <i class="fa-solid fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for project in featured_projects %}
+            <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-black/5">
+                <div class="aspect-[16/10] bg-brand-neutral overflow-hidden">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold tracking-wider uppercase text-brand-orange">{{ project.category }}</span>
+                    <h3 class="text-lg font-heading text-brand-brown mt-1 mb-2">{{ project.title }}</h3>
+                    <p class="text-sm text-brand-brown-light">{{ project.location }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="py-20 bg-brand-brown text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+            <span class="text-xs font-semibold tracking-widest uppercase text-brand-orange">Why Us</span>
+            <h2 class="text-3xl font-heading text-white mt-2 mb-4">Why Choose CHAVAN PATIL & ASSOCIATE?</h2>
+            <div class="section-divider"></div>
+            <p class="text-white/70 leading-relaxed mb-8">
+                With over 9+ years in the industry, we combine deep technical expertise with a passion for innovation to deliver projects that exceed expectations — on time and within budget.
+            </p>
+            <div class="space-y-5">
+                {% for reason in why_us %}
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-orange/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-check text-brand-orange"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-heading text-white text-base">{{ reason.title }}</h4>
+                        <p class="text-white/60 text-sm mt-1">{{ reason.desc }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+            <div class="bg-white/10 rounded-2xl p-6 text-center card-hover">
+                <i class="fa-solid fa-hard-hat text-brand-orange text-3xl mb-3"></i>
+                <p class="text-3xl font-heading text-white">500+</p>
+                <p class="text-white/60 text-sm mt-1">Projects Completed</p>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-6 text-center card-hover">
+                <i class="fa-solid fa-users text-brand-orange text-3xl mb-3"></i>
+                <p class="text-3xl font-heading text-white">10+</p>
+                <p class="text-white/60 text-sm mt-1">Team Members</p>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-6 text-center card-hover">
+                <i class="fa-solid fa-award text-brand-orange text-3xl mb-3"></i>
+                <p class="text-3xl font-heading text-white">15+</p>
+                <p class="text-white/60 text-sm mt-1">Awards Won</p>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-6 text-center card-hover">
+                <i class="fa-solid fa-handshake text-brand-orange text-3xl mb-3"></i>
+                <p class="text-3xl font-heading text-white">200+</p>
+                <p class="text-white/60 text-sm mt-1">Happy Clients</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA SECTION ===== -->
+<section class="py-20 bg-brand-cream text-center">
+    <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-4xl font-heading text-brand-brown mb-4">Ready to Start Your Project?</h2>
+        <p class="text-brand-brown-light mb-8">Let's discuss how we can bring your vision to life with our expert engineering team.</p>
+        <a href="{% url 'contact' %}" class="inline-block px-10 py-4 bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange-hover transition-all shadow-lg text-lg">
+            Contact Us Today <i class="fa-solid fa-arrow-right ml-2"></i>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

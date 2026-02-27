@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %}Awards | CHAVAN PATIL & ASSOCIATE Civil Engineering{% endblock %}
+
+{% block content %}
+
+<!-- ===== PAGE HERO ===== -->
+<section class="relative py-24 bg-brand-brown overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-orange blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="text-xs font-semibold tracking-widest uppercase text-brand-orange">Recognition</span>
+        <h1 class="text-5xl font-heading text-white mt-3 mb-4">Awards & Honours</h1>
+        <p class="text-white/70 max-w-2xl mx-auto">A testament to our excellence — recognised by industry bodies and government organisations across the nation.</p>
+        <nav class="flex justify-center gap-2 mt-6 text-sm text-white/60">
+            <a href="{% url 'home' %}" class="hover:text-brand-orange transition-colors">Home</a>
+            <span>/</span>
+            <span class="text-brand-orange">Awards</span>
+        </nav>
+    </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<!-- <section class="py-12 bg-brand-orange text-white">
+    <div class="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+            <p class="text-4xl font-heading">15+</p>
+            <p class="text-white/80 text-sm mt-1">National Awards</p>
+        </div>
+        <div>
+            <p class="text-4xl font-heading">8+</p>
+            <p class="text-white/80 text-sm mt-1">State Awards</p>
+        </div>
+        <div>
+            <p class="text-4xl font-heading">5+</p>
+            <p class="text-white/80 text-sm mt-1">Industry Honours</p>
+        </div>
+        <div>
+            <p class="text-4xl font-heading">3+</p>
+            <p class="text-white/80 text-sm mt-1">International Recognition</p>
+        </div>
+    </div>
+</section> -->
+
+<!-- ===== AWARDS TIMELINE ===== -->
+<section class="py-20 bg-brand-cream">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+            <span class="text-xs font-semibold tracking-widest uppercase text-brand-orange">Timeline</span>
+            <h2 class="text-4xl font-heading text-brand-brown mt-2">Our Award Journey</h2>
+            <div class="section-divider mx-auto mt-3"></div>
+        </div>
+
+        <div class="relative">
+            <!-- Timeline line -->
+            <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-brand-orange/20 -translate-x-1/2 hidden md:block"></div>
+
+            <div class="space-y-10">
+                {% for award in awards %}
+                <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    {% if forloop.counter|divisibleby:2 %}
+                    <!-- Even: right side -->
+                    <div class="md:text-right order-2 md:order-1">
+                        <div class="card-hover inline-block bg-white rounded-2xl p-6 shadow-sm border border-black/5 text-left md:text-right w-full">
+                            <div class="flex items-center gap-3 mb-3 md:flex-row-reverse">
+                                <div class="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="{{ award.icon }} text-brand-orange text-xl"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold text-brand-orange">{{ award.year }}</span>
+                                    <h3 class="font-heading text-brand-brown text-base">{{ award.title }}</h3>
+                                </div>
+                            </div>
+                            <p class="text-sm text-brand-brown-light">{{ award.description }}</p>
+                            <p class="text-xs text-brand-orange font-semibold mt-2">By: {{ award.presenter }}</p>
+                        </div>
+                    </div>
+                    <!-- Center dot -->
+                    <div class="hidden md:flex items-center justify-start order-1 md:order-2 relative">
+                        <div class="absolute left-0 w-5 h-5 rounded-full bg-brand-orange border-4 border-brand-cream shadow-md -translate-x-1/2 ml-0"></div>
+                    </div>
+                    {% else %}
+                    <!-- Odd: left side -->
+                    <!-- Center dot -->
+                    <div class="hidden md:flex items-center justify-end relative order-1">
+                        <div class="absolute right-0 w-5 h-5 rounded-full bg-brand-orange border-4 border-brand-cream shadow-md translate-x-1/2"></div>
+                    </div>
+                    <div class="order-2">
+                        <div class="card-hover inline-block bg-white rounded-2xl p-6 shadow-sm border border-black/5 w-full">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="{{ award.icon }} text-brand-orange text-xl"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold text-brand-orange">{{ award.year }}</span>
+                                    <h3 class="font-heading text-brand-brown text-base">{{ award.title }}</h3>
+                                </div>
+                            </div>
+                            <p class="text-sm text-brand-brown-light">{{ award.description }}</p>
+                            <p class="text-xs text-brand-orange font-semibold mt-2">By: {{ award.presenter }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us | CHAVAN PATIL & ASSOCIATE Civil Engineering{% endblock %}
+
+{% block content %}
+
+<!-- ===== PAGE HERO ===== -->
+<section class="relative py-24 bg-brand-brown overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-orange blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="text-xs font-semibold tracking-widest uppercase text-brand-orange">Get In Touch</span>
+        <h1 class="text-5xl font-heading text-white mt-3 mb-4">Contact Us</h1>
+        <p class="text-white/70 max-w-2xl mx-auto">Have a project in mind? Our team is ready to help you bring it to life.</p>
+        <nav class="flex justify-center gap-2 mt-6 text-sm text-white/60">
+            <a href="{% url 'home' %}" class="hover:text-brand-orange transition-colors">Home</a>
+            <span>/</span>
+            <span class="text-brand-orange">Contact Us</span>
+        </nav>
+    </div>
+</section>
+
+<!-- ===== CONTACT INFO + FORM ===== -->
+<section class="py-20 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+        <!-- Contact Info -->
+        <div class="lg:col-span-1 space-y-6">
+            <div>
+                <h2 class="text-3xl font-heading text-brand-brown mb-3">Let's Talk</h2>
+                <div class="section-divider"></div>
+                <p class="text-brand-brown-light text-sm leading-relaxed">
+                    Reach out to us for project consultations, service inquiries, or partnerships. We'll respond within 24 hours.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-black/5 flex items-start gap-4 card-hover">
+                <div class="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-location-dot text-brand-orange text-lg"></i>
+                </div>
+                <div>
+                    <h4 class="font-heading text-brand-brown text-sm mb-1">Office Address</h4>
+                    <p class="text-xs text-brand-brown-light leading-relaxed">Society Complex, Shop No. 3, Deolali Pravara,<br>Tal. Rahuri, Dist. Ahilyanagar.</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-black/5 flex items-start gap-4 card-hover">
+                <div class="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-phone text-brand-orange text-lg"></i>
+                </div>
+                <div>
+                    <h4 class="font-heading text-brand-brown text-sm mb-1">Phone Numbers</h4>
+                    <p class="text-xs text-brand-brown-light">+91 95619 15611</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-black/5 flex items-start gap-4 card-hover">
+                <div class="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-envelope text-brand-orange text-lg"></i>
+                </div>
+                <div>
+                    <h4 class="font-heading text-brand-brown text-sm mb-1">Email Addresses</h4>
+                    <p class="text-xs text-brand-brown-light">sachavanpatilassociate@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-black/5 flex items-start gap-4 card-hover">
+                <div class="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-clock text-brand-orange text-lg"></i>
+                </div>
+                <div>
+                    <h4 class="font-heading text-brand-brown text-sm mb-1">Working Hours</h4>
+                    <p class="text-xs text-brand-brown-light">Mon – Sat: 9:00 AM – 6:00 PM<br>Sunday: Closed</p>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex gap-3">
+                <a href="#" class="w-10 h-10 rounded-full bg-brand-brown text-white flex items-center justify-center hover:bg-brand-orange transition-colors shadow-md"><i class="fab fa-facebook-f text-sm"></i></a>
+                <a href="https://www.instagram.com/s.a.chavanpatil_associate" target="_blank" class="w-10 h-10 rounded-full bg-brand-brown text-white flex items-center justify-center hover:bg-brand-orange transition-colors shadow-md"><i class="fab fa-instagram text-sm"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-brand-brown text-white flex items-center justify-center hover:bg-brand-orange transition-colors shadow-md"><i class="fab fa-linkedin-in text-sm"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-brand-brown text-white flex items-center justify-center hover:bg-brand-orange transition-colors shadow-md"><i class="fab fa-youtube text-sm"></i></a>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-2 bg-white rounded-2xl p-8 shadow-sm border border-black/5">
+            <h3 class="text-2xl font-heading text-brand-brown mb-2">Send Us a Message</h3>
+            <p class="text-sm text-brand-brown-light mb-8">Fill in the form below and we'll get back to you as soon as possible.</p>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="mb-6 p-4 rounded-xl {% if message.tags == 'success' %}bg-green-50 text-green-700 border border-green-200{% else %}bg-red-50 text-red-700 border border-red-200{% endif %} text-sm">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form method="POST" action="{% url 'contact' %}" class="space-y-5">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-semibold text-brand-brown-light uppercase tracking-wider mb-2">Full Name *</label>
+                        <input type="text" name="name" placeholder="John Doe" required
+                               class="w-full px-4 py-3 rounded-xl border border-black/10 bg-brand-cream text-brand-brown text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-brand-brown-light uppercase tracking-wider mb-2">Email Address *</label>
+                        <input type="email" name="email" placeholder="john@example.com" required
+                               class="w-full px-4 py-3 rounded-xl border border-black/10 bg-brand-cream text-brand-brown text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-colors">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-semibold text-brand-brown-light uppercase tracking-wider mb-2">Phone Number</label>
+                        <input type="tel" name="phone" placeholder="+91 98765 43210"
+                               class="w-full px-4 py-3 rounded-xl border border-black/10 bg-brand-cream text-brand-brown text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-brand-brown-light uppercase tracking-wider mb-2">Service Required</label>
+                        <select name="service"
+                                class="w-full px-4 py-3 rounded-xl border border-black/10 bg-brand-cream text-brand-brown text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-colors">
+                            <option value="">Select a service</option>
+                            <option>Structural Design</option>
+                            <option>Road Construction</option>
+                            <option>Bridge Engineering</option>
+                            <option>Building Construction</option>
+                            <option>Project Management</option>
+                            <option>Soil Testing & Survey</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-brand-brown-light uppercase tracking-wider mb-2">Subject *</label>
+                    <input type="text" name="subject" placeholder="Project inquiry / Consultation request" required
+                           class="w-full px-4 py-3 rounded-xl border border-black/10 bg-brand-cream text-brand-brown text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-brand-brown-light uppercase tracking-wider mb-2">Message *</label>
+                    <textarea name="message" rows="5" placeholder="Tell us about your project..." required
+                              class="w-full px-4 py-3 rounded-xl border border-black/10 bg-brand-cream text-brand-brown text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-colors resize-none"></textarea>
+                </div>
+                <button type="submit"
+                        class="w-full py-4 bg-brand-orange text-white font-semibold rounded-xl hover:bg-brand-orange-hover transition-all shadow-lg text-sm tracking-wide">
+                    <i class="fa-solid fa-paper-plane mr-2"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MAP PLACEHOLDER ===== -->
+<section class="bg-brand-neutral">
+    <div class="w-full h-72 bg-brand-neutral flex items-center justify-center border-t border-black/5">
+        <div class="text-center">
+            <i class="fa-solid fa-map-location-dot text-brand-orange text-5xl mb-3"></i>
+            <p class="text-brand-brown-light text-sm">Interactive map will be embedded here</p>
+            <p class="text-xs text-brand-brown-light/60 mt-1">Society Complex, Shop No. 3, Deolali Pravara</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

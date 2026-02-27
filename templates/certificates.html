@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Certificates | CHAVAN PATIL & ASSOCIATE Civil Engineering{% endblock %}
+
+{% block content %}
+
+<!-- ===== PAGE HERO ===== -->
+<section class="relative py-24 bg-brand-brown overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-orange blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="text-xs font-semibold tracking-widest uppercase text-brand-orange">Credentials</span>
+        <h1 class="text-5xl font-heading text-white mt-3 mb-4">Certificates</h1>
+        <p class="text-white/70 max-w-2xl mx-auto">Our certifications reflect our unwavering commitment to quality, safety, and international standards.</p>
+        <nav class="flex justify-center gap-2 mt-6 text-sm text-white/60">
+            <a href="{% url 'home' %}" class="hover:text-brand-orange transition-colors">Home</a>
+            <span>/</span>
+            <span class="text-brand-orange">Certificates</span>
+        </nav>
+    </div>
+</section>
+
+<!-- ===== INTRO ===== -->
+<section class="py-16 bg-brand-cream">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-heading text-brand-brown mb-4">Certified Excellence</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="text-brand-brown-light leading-relaxed">
+            CHAVAN PATIL & ASSOCIATE Civil Engineering holds numerous nationally and internationally recognised certifications. These credentials validate our expertise, quality management systems, and commitment to safety and environmental responsibility.
+        </p>
+    </div>
+</section>
+
+<!-- ===== CERTIFICATES GRID ===== -->
+<section class="py-12 pb-20 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for cert in certificates %}
+            <div class="card-hover bg-white rounded-2xl p-8 border border-black/5 shadow-sm text-center relative overflow-hidden">
+                <!-- Decorative corner -->
+                <div class="absolute top-0 right-0 w-16 h-16 bg-brand-orange/10 rounded-bl-full"></div>
+                <div class="w-16 h-16 rounded-full bg-brand-orange/10 flex items-center justify-center mx-auto mb-5">
+                    <i class="{{ cert.icon }} text-brand-orange text-2xl"></i>
+                </div>
+                <div class="inline-block px-3 py-1 bg-brand-neutral rounded-full text-xs font-semibold text-brand-brown-light tracking-wider uppercase mb-4">
+                    {{ cert.issuer }}
+                </div>
+                <h3 class="text-lg font-heading text-brand-brown mb-2">{{ cert.title }}</h3>
+                <p class="text-sm text-brand-brown-light leading-relaxed mb-5">{{ cert.description }}</p>
+                <div class="flex items-center justify-between text-xs text-brand-brown-light border-t border-black/5 pt-4">
+                    <span><i class="fa-solid fa-calendar-check text-brand-orange mr-1"></i> Issued: {{ cert.issued }}</span>
+                    <span><i class="fa-solid fa-rotate text-brand-orange mr-1"></i> Valid: {{ cert.valid }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ===== ACCREDITATIONS STRIP ===== -->
+<section class="py-12 bg-brand-neutral">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl font-heading text-brand-brown">Accredited By</h2>
+            <div class="section-divider mx-auto mt-2"></div>
+        </div>
+        <div class="flex flex-wrap justify-center items-center gap-8">
+            {% for body in accreditations %}
+            <div class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
+                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-md">
+                    <i class="{{ body.icon }} text-brand-orange text-2xl"></i>
+                </div>
+                <p class="text-xs font-semibold text-brand-brown-light text-center max-w-20">{{ body.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

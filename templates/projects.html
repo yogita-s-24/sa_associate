@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Projects | CHAVAN PATIL & ASSOCIATE Civil Engineering{% endblock %}
+
+{% block content %}
+
+<!-- ===== PAGE HERO ===== -->
+<section class="relative py-24 bg-brand-brown overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-orange blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="text-xs font-semibold tracking-widest uppercase text-brand-orange">Portfolio</span>
+        <h1 class="text-5xl font-heading text-white mt-3 mb-4">Our Projects</h1>
+        <p class="text-white/70 max-w-2xl mx-auto">Explore our diverse portfolio of civil engineering and construction projects across the country.</p>
+        <nav class="flex justify-center gap-2 mt-6 text-sm text-white/60">
+            <a href="{% url 'home' %}" class="hover:text-brand-orange transition-colors">Home</a>
+            <span>/</span>
+            <span class="text-brand-orange">Projects</span>
+        </nav>
+    </div>
+</section>
+
+<!-- ===== FILTER TABS ===== -->
+<section class="py-8 bg-brand-neutral sticky top-16 z-40 border-b border-black/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap justify-center gap-3" id="filter-tabs">
+            <button onclick="filterProjects('all')" class="filter-btn active px-5 py-2 rounded-full text-sm font-medium transition-all" data-filter="all">All Projects</button>
+            <button onclick="filterProjects('infrastructure')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all" data-filter="infrastructure">Infrastructure</button>
+            <button onclick="filterProjects('commercial')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all" data-filter="commercial">Commercial</button>
+            <button onclick="filterProjects('residential')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all" data-filter="residential">Residential</button>
+            <button onclick="filterProjects('industrial')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all" data-filter="industrial">Industrial</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROJECTS GRID ===== -->
+<section class="py-16 bg-brand-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+            {% for project in projects %}
+            <div class="project-card card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-black/5" data-category="{{ project.category|lower }}">
+                <div class="relative aspect-[16/10] bg-brand-neutral overflow-hidden">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 bg-brand-orange text-white text-xs font-semibold rounded-full">{{ project.category }}</span>
+                    </div>
+                    {% if project.status == 'Completed' %}
+                    <div class="absolute top-4 right-4">
+                        <span class="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full">Completed</span>
+                    </div>
+                    {% elif project.status == 'Ongoing' %}
+                    <div class="absolute top-4 right-4">
+                        <span class="px-3 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">Ongoing</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-heading text-brand-brown mb-2">{{ project.title }}</h3>
+                    <p class="text-sm text-brand-brown-light mb-4 leading-relaxed">{{ project.description }}</p>
+                    <div class="flex items-center justify-between text-xs text-brand-brown-light border-t border-black/5 pt-4">
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-brand-orange"></i> {{ project.location }}</span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-calendar text-brand-orange"></i> {{ project.year }}</span>
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-indian-rupee-sign text-brand-orange"></i> {{ project.value }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<style>
+    .filter-btn { background-color: white; color: #67534f; border: 1px solid rgba(0,0,0,0.1); }
+    .filter-btn.active { background-color: #ff954f; color: white; border-color: #ff954f; }
+    .filter-btn:hover:not(.active) { background-color: #f2f2e7; color: #532418; }
+    .project-card.hidden { display: none; }
+</style>
+<script>
+    function filterProjects(category) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+        document.querySelectorAll('.project-card').forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+</script>
+{% endblock %}
