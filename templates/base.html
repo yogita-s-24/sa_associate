@@ -368,6 +368,8 @@
             transition: background-color 0.3s ease;
             flex-shrink: 0;
             text-decoration: none;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.25);
         }
 
         .floating-icon-btn:hover {
@@ -389,12 +391,26 @@
             transition: max-width 0.4s ease, padding 0.4s ease;
             padding-left: 0;
             padding-right: 0;
+            border-radius: 0 8px 8px 0;
         }
 
         .floating-contact-item.open .floating-contact-label {
             max-width: 280px;
             padding-left: 14px;
             padding-right: 14px;
+        }
+
+        /* Mobile: smaller icons, no label expand */
+        @media (max-width: 767px) {
+            .floating-icon-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                border-radius: 0 8px 8px 0;
+            }
+            .floating-contact-label {
+                display: none;
+            }
         }
 
         /* WhatsApp Floating Button */
@@ -441,6 +457,7 @@
     <script>
         const floatItems = document.querySelectorAll('.floating-contact-item');
         floatItems.forEach(item => {
+            // Desktop only: hover to expand label
             item.addEventListener('mouseenter', () => {
                 floatItems.forEach(other => other.classList.remove('open'));
                 item.classList.add('open');
